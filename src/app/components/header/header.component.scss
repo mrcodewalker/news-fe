@@ -1,0 +1,280 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+
+  &.scrolled {
+    transform: translateY(-40px); // Hide top-bar when scrolled
+  }
+}
+
+.top-bar {
+  background: #1a237e;
+  color: white;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .contact-info {
+    display: flex;
+    gap: 1.5rem;
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: white;
+      text-decoration: none;
+
+      svg {
+        color: #90caf9;
+      }
+
+      &:hover {
+        color: #90caf9;
+      }
+    }
+  }
+
+  .auth-links {
+    .auth-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: white;
+      text-decoration: none;
+      padding: 0.25rem 1rem;
+      border-radius: 4px;
+      background-color: rgba(255,255,255,0.1);
+      transition: background-color 0.3s ease;
+      width: 100%;
+      &:hover {
+        background-color: rgba(255,255,255,0.2);
+      }
+    }
+  }
+}
+
+.main-nav {
+  padding: 1rem 0;
+
+  .nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.logo-container {
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    max-width: 600px;
+
+    .logo {
+      width: 60px;
+      height: auto;
+    }
+
+    .institute-info {
+      display: flex;
+      flex-direction: column;
+
+      .institute-name {
+        color: #1a237e;
+        font-size: 1.2rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .department-name {
+        color: #283593;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 0.25rem;
+      }
+
+      .official-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: #4caf50;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+        width: fit-content;
+
+        svg {
+          color: #ffeb3b;
+        }
+      }
+    }
+  }
+}
+
+.desktop-menu {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+
+  .menu-item {
+    position: relative;
+    color: #1a237e;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+      font-size: 1.1rem;
+    }
+
+    .underline {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #1a237e;
+      transition: width 0.3s ease;
+    }
+
+    &:hover, &.active {
+      .underline {
+        width: 100%;
+      }
+    }
+
+    &.active {
+      color: #1a237e;
+      font-weight: 600;
+    }
+  }
+}
+
+.mobile-menu-toggle {
+  display: none;
+
+  .toggle-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+
+    .hamburger-icon {
+      width: 24px;
+      height: 24px;
+      stroke: #1a237e;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+  }
+}
+
+.mobile-menu {
+  display: none;
+  padding: 1rem;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+
+  .menu-item {
+    display: block;
+    padding: 0.75rem 0;
+    color: #1a237e;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid #e0e0e0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.active {
+      color: #1a237e;
+      font-weight: 600;
+    }
+  }
+}
+
+.header-placeholder {
+  height: 140px; // Adjust based on header height
+}
+
+@media (max-width: 1024px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .logo-container .logo-link {
+    .institute-info {
+      .institute-name {
+        font-size: 1rem;
+      }
+      .department-name {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    .contact-info {
+      gap: 1rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  .logo-container .logo-link {
+    .logo {
+      width: 50px;
+    }
+  }
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+
+  // Các style khác của header giữ nguyên
+  .top-bar {
+    padding: 8px 0;
+  }
+
+  .main-nav {
+    padding: 15px 0;
+  }
+}
+
+.header-placeholder {
+  height: var(--header-height, 140px); // Giá trị mặc định 140px
+  width: 100%;
+  display: block;
+}

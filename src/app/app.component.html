@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<app-notification></app-notification>
+<app-loading></app-loading>
+<div *ngIf="!isAdminRoute()">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>
+<div *ngIf="isAdminRoute()">
+  <app-sidebar></app-sidebar>
+</div>

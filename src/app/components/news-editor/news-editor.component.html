@@ -1,0 +1,110 @@
+<form [formGroup]="newsForm" (ngSubmit)="onSubmit($event)" class="news-editor">
+  <div class="form-group">
+    <label for="title">Tiêu đề:</label>
+    <input id="title" type="text" formControlName="title" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="summary">Tóm tắt:</label>
+    <textarea id="summary" formControlName="summary" class="form-control"></textarea>
+  </div>
+  <div class="form-group file-upload">
+    <label for="fileId">Tải lên File:</label>
+    <app-views-pdf (fileSelected)="handleFileSelected($event)"></app-views-pdf>
+    <app-pdf-import [fileSelected]="fileSelected" (fileUploaded)="handleFileUpload($event)" [fileString]="this.fetchFileUrl" [fileName]="this.fetchFileName" [editMode]="this.isEditMode"></app-pdf-import>
+  </div>
+  <div class="form-group">
+    <label for="content">Nội dung:</label>
+    <quill-editor formControlName="content" [modules]="quillModules" class="quill-editor"></quill-editor>
+  </div>
+
+  <div class="form-group">
+    <div class="thumbnail-wrapper">
+      <label for="thumbnail" class="thumbnail-label">
+        <span>Hình ảnh đại diện:</span>
+        <input type="file" id="thumbnail" (change)="onFileSelected($event)" accept="image/*" class="file-input">
+        <span class="file-name">{{ thumbnailFileName || 'Chọn ảnh' }}</span>
+      </label>
+      <button *ngIf="thumbnailFileName" type="button" class="clear-btn" (click)="clearThumbnail($event)">✖</button>
+    </div>
+  </div>
+  <div *ngIf="thumbnailPreview" class="thumbnail-preview">
+    <img #thumbnailImg [src]="thumbnailPreview"
+         [style.width.px]="thumbnailWidth"
+         [style.height.px]="thumbnailHeight"
+         (load)="onThumbnailLoad($event)">
+    <div class="resize-controls">
+      <div class="dimension-control">
+        <label for="thumbnailWidth">Chiều rộng (px):</label>
+        <input type="number"
+               id="thumbnailWidth"
+               [(ngModel)]="thumbnailWidth"
+               [ngModelOptions]="{standalone: true}"
+               (change)="resizeThumbnail()">
+      </div>
+      <div class="dimension-control">
+        <label for="thumbnailHeight">Chiều cao (px):</label>
+        <input type="number"
+               id="thumbnailHeight"
+               [(ngModel)]="thumbnailHeight"
+               [ngModelOptions]="{standalone: true}"
+               (change)="resizeThumbnail()">
+      </div>
+      <button type="button" (click)="resetThumbnailSize()">Khôi phục kích thước gốc</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="tags">Tags:</label>
+    <div class="custom-select-wrapper">
+      <div class="custom-select" (click)="toggleTagSelect()">
+        <div class="custom-select-trigger">
+          {{ selectedTags.length ? (selectedTags.length + ' tags selected') : 'Select tags' }}
+          <i class="fa-solid" [ngClass]="{'fa-chevron-down': !isTagSelectOpen, 'fa-chevron-up': isTagSelectOpen}"></i>
+        </div>
+        <div class="custom-options" [class.open]="isTagSelectOpen">
+          <div
+            *ngFor="let tag of tags"
+            class="custom-option"
+            [class.selected]="isTagSelected(tag)"
+            (click)="toggleTag(tag, $event)">
+            {{ tag.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="selected-tags">
+    <span *ngFor="let tag of selectedTags" class="tag">
+      {{ tag.name }}
+      <button type="button" class="remove-tag" (click)="removeTag(tag)">×</button>
+    </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="category">Danh mục:</label>
+    <select
+      id="category"
+      formControlName="categoryId"
+      class="form-control"
+      (change)="onCategoryChange($event)">
+      <option *ngFor="let category of categories"
+              [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+    <div *ngIf="newsForm.get('categoryId')?.touched && newsForm.get('categoryId')?.invalid"
+         class="error-message">
+      <span *ngIf="newsForm.get('categoryId')?.errors?.['required']">
+        Vui lòng chọn danh mục
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="status">Trạng thái:</label>
+    <select id="status" formControlName="status" class="form-control">
+      <option value="DRAFT">Bản nháp</option>
+      <option value="PUBLISHED">Đã xuất bản</option>
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="newsForm.invalid" class="submit-btn">Lưu bài viết</button>
+</form>

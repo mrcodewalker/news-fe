@@ -1,0 +1,22 @@
+<div class="image-slider">
+  <div class="slide-container">
+    <img
+      *ngFor="let image of images; let i = index"
+      [src]="image"
+      [@fadeAnimation]
+      [class.active]="i === currentIndex"
+      alt="Slide image"
+    >
+  </div>
+  <div class="controls">
+    <button (click)="prevSlide()" class="prev">&#10094;</button>
+    <button (click)="nextSlide()" class="next">&#10095;</button>
+  </div>
+  <div class="indicators">
+    <span
+      *ngFor="let image of images; let i = index"
+      [class.active]="i === currentIndex"
+      (click)="currentIndex = i"
+    ></span>
+  </div>
+</div>

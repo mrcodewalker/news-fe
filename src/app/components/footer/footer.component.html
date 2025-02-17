@@ -1,0 +1,94 @@
+<footer class="footer">
+  <div class="footer-content">
+    <!-- Main Footer Content -->
+    <div class="footer-main">
+      <!-- Department Info Section -->
+      <div class="footer-section department-info">
+        <img src="assets/images/logo.jpg" alt="Logo Học viện Hành chính Quốc gia" class="footer-logo">
+        <h3 class="department-name">Trung Tâm Khảo thí và Đảm bảo Chất lượng</h3>
+        <h4 class="institute-name">Học viện Hành Chính và Quản trị công</h4>
+        <div class="contact-info">
+          <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>Hotline: {{contactInfo.hotline}}</span>
+          </div>
+          <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>Email: {{contactInfo.email}}</span>
+          </div>
+          <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>{{contactInfo.address}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links Section -->
+      <div class="footer-section quick-links">
+        <h4 class="footer-title">Liên kết nhanh</h4>
+        <ul class="footer-links">
+          <li><a href="#">Lịch thi</a></li>
+          <li><a href="#">Kết quả thi</a></li>
+          <li><a href="#">Quy chế thi</a></li>
+          <li><a href="#">Hướng dẫn thí sinh</a></li>
+          <li><a href="#">Thông báo</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources Section -->
+      <div class="footer-section resources">
+        <h4 class="footer-title">Tài nguyên</h4>
+        <ul class="footer-links">
+          <li><a href="#">Biểu mẫu</a></li>
+          <li><a href="#">Tài liệu hướng dẫn</a></li>
+          <li><a href="#">Văn bản pháp quy</a></li>
+          <li><a href="#">Câu hỏi thường gặp</a></li>
+          <li><a href="#">Liên hệ hỗ trợ</a></li>
+        </ul>
+      </div>
+
+      <!-- Support Section -->
+      <div class="footer-section support">
+        <h4 class="footer-title">Hỗ trợ thí sinh</h4>
+        <div class="support-hours">
+          <p class="support-title">Giờ hỗ trợ:</p>
+          <p class="time">Thứ 2 - Thứ 6: 8:00 - 17:00</p>
+          <p class="time">Thứ 7: 8:00 - 12:00</p>
+        </div>
+        <div class="support-channels">
+          <p class="support-title">Kênh hỗ trợ:</p>
+          <div class="channel-buttons">
+            <a href="#" class="channel-btn hotline">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              Hotline
+            </a>
+            <a href="#" class="channel-btn zalo">
+              Zalo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p class="copyright">© {{currentYear}} Trung Tâm Khảo thí và Đảm bảo Chất lượng - Học viện Hành chính và Quản trị công</p>
+      <div class="certification">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        <span>Website Chính thức</span>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,368 @@
+/* news-header.component.scss */
+:host {
+  display: block;
+}
+
+/* Header styles */
+.official-header {
+  background: #1a237e; // Main background color
+  background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+  padding: 20px 30px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  color: #fff;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-right: 20px;
+  background: #fff;
+  padding: 5px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.institute-info {
+  flex: 1;
+}
+
+.institute-name {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  letter-spacing: 0.5px;
+}
+
+.department-name {
+  color: #e8eaf6;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+}
+
+.certification {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ff4081;
+  color: white;
+  font-size: 14px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.certification i {
+  margin-right: 6px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.date-weather {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.current-date {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.weather-container {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #e8eaf6;
+  margin-bottom: 18px;
+}
+
+.weather-icon {
+  margin-right: 10px;
+  color: #ffea00;
+  font-size: 18px;
+}
+
+.quote-container {
+  flex: 1;
+  max-width: 600px;
+  background-color: rgba(255,255,255,0.15);
+  border-left: 4px solid #ff4081;
+  padding: 15px 18px;
+  border-radius: 4px;
+  position: relative;
+  min-height: 80px;
+  backdrop-filter: blur(5px);
+}
+
+.quote {
+  font-style: italic;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.5;
+  padding-right: 30px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.refresh-quote {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background: none;
+  border: none;
+  color: #ff80ab;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+
+  i {
+    margin-right: 4px;
+  }
+
+  &:hover {
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+  }
+}
+
+.contact-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.contact-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #e8eaf6;
+  margin-right: 20px;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.contact-item i {
+  margin-right: 8px;
+  color: #ff80ab;
+}
+
+.btn-important {
+  background-color: #ff4081;
+  color: white;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+
+  i {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    background-color: #f50057;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  }
+}
+
+.notification-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #f50057;
+  font-weight: bold;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 70%;
+  padding: 10px 15px;
+  padding-right: 40px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s;
+
+  &::placeholder {
+    color: rgba(255,255,255,0.7);
+  }
+
+  &:focus {
+    background: rgba(255,255,255,0.25);
+    box-shadow: 0 0 0 2px rgba(255, 64, 129, 0.5);
+    outline: none;
+  }
+}
+
+.search-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .header-content {
+    flex-direction: column;
+  }
+
+  .date-weather {
+    margin-bottom: 20px;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .quote-container {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .institute-info {
+    text-align: center;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-group {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .contact-item {
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .btn-important {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .official-header {
+    padding: 15px;
+  }
+
+  .institute-name {
+    font-size: 18px;
+  }
+
+  .department-name {
+    font-size: 16px;
+  }
+
+  .quote {
+    font-size: 14px;
+  }
+
+  .header-content {
+    padding: 15px;
+  }
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.official-header {
+  animation: fadeIn 0.4s ease-out;
+}
+.weather-details {
+  font-size: 0.9em;
+}
+
+.weather-details span {
+  margin-right: 12px;
+  display: inline-block;
+}
+
+.weather-details i {
+  margin-right: 4px;
+  color: #0066b3;
+}

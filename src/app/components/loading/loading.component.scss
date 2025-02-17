@@ -1,0 +1,113 @@
+.loading-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 9999 !important;
+}
+
+.loading-content {
+  text-align: center;
+}
+
+.education-loader {
+  width: 200px;
+  height: 200px;
+  animation: rotate 20s linear infinite;
+}
+
+.loading-text {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: #2c3e50;
+  font-family: 'Arial', sans-serif;
+  animation: pulse 2s infinite;
+}
+
+.orbit {
+  fill: none;
+  stroke: #3498db;
+  stroke-width: 0.5;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  animation: drawCircle 4s linear infinite;
+}
+
+.graduate {
+  fill: #e74c3c;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.book {
+  fill: #f1c40f;
+  animation: flipBook 4s ease-in-out infinite;
+}
+
+.page {
+  fill: white;
+  animation: turnPage 4s ease-in-out infinite;
+}
+
+.pencil {
+  fill: #2ecc71;
+  animation: write 3s ease-in-out infinite;
+}
+
+.atom-orbit {
+  fill: none;
+  stroke: #9b59b6;
+  stroke-width: 0.5;
+}
+
+.electron {
+  fill: #9b59b6;
+  animation: revolve 2s linear infinite;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes drawCircle {
+  0% { stroke-dashoffset: 283; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes flipBook {
+  0%, 100% { transform: rotateY(0deg); }
+  50% { transform: rotateY(180deg); }
+}
+
+@keyframes turnPage {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0); }
+}
+
+@keyframes write {
+  0% { transform: translate(0, 0) rotate(45deg); }
+  25% { transform: translate(-5px, -5px) rotate(45deg); }
+  50% { transform: translate(0, 0) rotate(45deg); }
+  75% { transform: translate(5px, 5px) rotate(45deg); }
+  100% { transform: translate(0, 0) rotate(45deg); }
+}
+
+@keyframes revolve {
+  0% { transform: rotate(0deg) translateX(15px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(15px) rotate(-360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

@@ -1,0 +1,96 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <div class="background-squares">
+    <div class="square square1"></div>
+    <div class="square square2"></div>
+    <div class="square square3"></div>
+  </div>
+
+  <div class="login-box" [@fadeInAnimation]>
+    <div class="shape-blob"></div>
+    <div class="shape-blob2"></div>
+
+    <div class="logo-section">
+      <div class="logo-wrapper">
+        <img src="/assets/images/logo.jpg" alt="Logo Học viện Hành chính Quốc gia" class="logo">
+        <div class="logo-ring"></div>
+      </div>
+      <h1 class="title-animate">TRUNG TÂM KHẢO THÍ VÀ ĐÁNH GIÁ CHẤT LƯỢNG</h1>
+      <h2 class="subtitle-animate">HỌC VIỆN HÀNH CHÍNH VÀ QUẢN LÝ CÔNG</h2>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group" [@inputAnimation]>
+        <label for="username">Tên đăng nhập</label>
+        <div class="input-container">
+          <i class="fas fa-user"></i>
+          <input
+            type="text"
+            id="username"
+            formControlName="username"
+            placeholder="Nhập tên đăng nhập"
+            [class.error]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
+          >
+          <span class="focus-border">
+            <i></i>
+          </span>
+        </div>
+        <div class="error-tooltip" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+          Vui lòng nhập tên đăng nhập hợp lệ
+        </div>
+      </div>
+
+      <div class="form-group" [@inputAnimation]>
+        <label for="password">Mật khẩu</label>
+        <div class="input-container">
+          <i class="fas fa-lock"></i>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Nhập mật khẩu"
+            [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          >
+          <span class="focus-border">
+            <i></i>
+          </span>
+<!--          <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">-->
+<!--            <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>-->
+<!--          </button>-->
+        </div>
+        <div class="error-tooltip" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          Mật khẩu phải có ít nhất 6 ký tự
+        </div>
+      </div>
+
+      <div class="remember-forgot">
+        <label class="remember-me">
+          <input type="checkbox" formControlName="rememberMe">
+          <span class="checkmark"></span>
+          Ghi nhớ đăng nhập
+        </label>
+        <a href="#" class="forgot-link">Quên mật khẩu?</a>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage" [@errorAnimation]>
+        <i class="fas fa-exclamation-circle"></i>
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" [disabled]="isSubmitting || loginForm.invalid" class="login-button" [@buttonAnimation]>
+        <span class="button-content" *ngIf="!isSubmitting">
+          <i class="fas fa-sign-in-alt"></i>
+          Đăng nhập
+        </span>
+        <div class="loader-container" *ngIf="isSubmitting">
+          <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-line-mask">
+              <div class="loader-line"></div>
+            </div>
+          </div>
+        </div>
+      </button>
+    </form>
+  </div>
+</div>

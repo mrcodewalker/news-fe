@@ -1,0 +1,181 @@
+// notification.component.scss
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap');
+
+// Keyframes cho các hiệu ứng
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.notification-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-start; // Đổi thành center nếu muốn ở giữa màn hình
+  justify-content: center;
+  padding-top: 20px; // Khoảng cách từ top
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+.notification-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 400px;
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.8) 50%,
+      rgba(255,255,255,0) 100%);
+    animation: shine 2s infinite linear;
+    background-size: 200% 100%;
+  }
+
+  &.success {
+    background: linear-gradient(145deg, #f1f9f1, #ffffff);
+    border-left: 5px solid #4CAF50;
+    .notification-icon {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    }
+  }
+
+  &.error {
+    background: linear-gradient(145deg, #fef1f1, #ffffff);
+    border-left: 5px solid #f44336;
+    .notification-icon {
+      background: linear-gradient(45deg, #f44336, #e53935);
+      box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+    }
+  }
+
+  &.warning {
+    background: linear-gradient(145deg, #fff8e1, #ffffff);
+    border-left: 5px solid #ff9800;
+    .notification-icon {
+      background: linear-gradient(45deg, #ff9800, #f57c00);
+      box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+    }
+  }
+
+  &.info {
+    background: linear-gradient(145deg, #e3f2fd, #ffffff);
+    border-left: 5px solid #2196F3;
+    .notification-icon {
+      background: linear-gradient(45deg, #2196F3, #1976D2);
+      box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+    }
+  }
+}
+
+.notification-icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  color: white;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    animation: ripple 1.5s infinite;
+    z-index: -1;
+  }
+
+  i {
+    font-size: 24px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+
+.notification-message {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.notification-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #999;
+  background: rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  margin-left: 15px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: rotate(90deg);
+    color: #666;
+  }
+}
+
+.notification-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.5),
+    rgba(255,255,255,1),
+    rgba(255,255,255,0.5));
+  background-size: 200% 100%;
+  animation: shine 2s linear infinite;
+}

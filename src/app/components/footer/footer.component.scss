@@ -1,0 +1,228 @@
+.footer {
+  background-color: #1a237e;
+  color: #fff;
+  padding: 3rem 0 1rem;
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .footer-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .department-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    color: #90caf9;
+  }
+
+  .institute-name {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 0 1rem;
+    color: #e3f2fd;
+  }
+
+  .contact-info {
+    margin-top: 1rem;
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+
+      svg {
+        color: #90caf9;
+      }
+
+      span {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .footer-title {
+    color: #90caf9;
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+    font-weight: 600;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #90caf9;
+        }
+      }
+    }
+  }
+
+  .support-hours, .support-channels {
+    margin-bottom: 1.5rem;
+
+    .support-title {
+      color: #90caf9;
+      font-size: 0.9rem;
+      margin: 0 0 0.5rem;
+    }
+
+    .time {
+      margin: 0 0 0.25rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  .channel-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+
+    .channel-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+
+      &.hotline {
+        background-color: #c62828;
+        color: white;
+
+        &:hover {
+          background-color: #b71c1c;
+        }
+      }
+
+      &.zalo {
+        background-color: #0068ff;
+        color: white;
+
+        &:hover {
+          background-color: #0051cc;
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .copyright {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #e3f2fd;
+    }
+
+    .certification {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #4caf50;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+
+      svg {
+        color: #ffeb3b;
+      }
+    }
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .footer {
+    padding: 2rem 0 1rem;
+
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+
+      .certification {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+.footer-logo {
+  width: 100px;
+  height: auto;
+  margin: 0 auto 1rem;
+  display: block;
+}
+.footer {
+  background-color: #1a237e;
+  color: #fff;
+  padding: 4rem 0 1rem;
+  margin-top: 2rem;// Tăng padding-top từ 3rem lên 4rem
+}
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 1rem; // Giảm padding-top xuống 3rem trên mobile
+
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 2rem; // Tăng khoảng cách giữa các phần
+    }
+
+    .footer-section {
+      text-align: center; // Căn giữa nội dung trên mobile
+    }
+
+    .contact-info .contact-item {
+      justify-content: center; // Căn giữa các mục liên hệ
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .channel-buttons {
+      justify-content: center; // Căn giữa các nút kênh hỗ trợ
+    }
+  }
+}

@@ -1,0 +1,59 @@
+<!-- news-header.component.html -->
+<div class="official-header">
+  <div class="header-container">
+    <div class="logo-section">
+      <img src="assets/images/logo.jpg" alt="Logo Học viện Hành chính Quốc gia" class="logo">
+      <div class="institute-info">
+        <h1 class="institute-name">HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG</h1>
+        <h2 class="department-name">TRUNG TÂM KHẢO THÍ VÀ ĐẢM BẢO CHẤT LƯỢNG</h2>
+        <div class="certification">
+          <i class="fas fa-certificate"></i>
+          <span>Website Chính thức</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-content">
+      <div class="date-weather">
+        <h3 class="current-date">{{ formatVietnameseDate(currentDate) }}</h3>
+        <div class="weather-container">
+          <i class="fas {{ weatherIcon }} weather-icon"></i>
+          <span>{{ temperature }}°C, {{ location }}</span>
+        </div>
+        <div class="weather-details">
+          <span><i class="fas fa-tint"></i> Độ ẩm: {{ humidity }}%</span>
+          <span><i class="fas fa-wind"></i> Gió: {{ windSpeed }} km/h</span>
+          <span><i class="fas fa-cloud-sun-rain"></i> Dự báo: {{ forecast }}</span>
+        </div>
+      </div>
+
+      <div class="quote-container">
+        <p class="quote">"{{ randomQuote }}"</p>
+        <button class="refresh-quote" (click)="getRandomQuote()">
+          <i class="fas fa-sync-alt"></i> Làm mới
+        </button>
+      </div>
+    </div>
+
+    <div class="contact-info">
+      <div class="contact-group">
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>Hotline: {{ contactInfo.hotline }}</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>Email: {{ contactInfo.email }}</span>
+        </div>
+      </div>
+
+      <a href="#" class="btn-important">
+        <i class="fas fa-bell"></i>
+        Thông báo quan trọng
+        <span class="notification-badge" *ngIf="notificationCount > 0">
+          {{ notificationCount }}
+        </span>
+      </a>
+    </div>
+  </div>
+</div>

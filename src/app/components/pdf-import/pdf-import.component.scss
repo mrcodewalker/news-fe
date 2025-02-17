@@ -1,0 +1,475 @@
+// pdf-import.component.scss
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+// Variables
+$primary-color: #4f46e5;
+$primary-hover: #4338ca;
+$error-color: #ef4444;
+$text-primary: #111827;
+$text-secondary: #6b7280;
+$border-color: #e5e7eb;
+$transition-fast: 200ms;
+$transition-normal: 300ms;
+
+.pdf-import-container {
+  font-family: 'Inter', sans-serif;
+
+  .import-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 10%;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(145deg, $primary-color, $primary-hover);
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all $transition-fast ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all $transition-normal cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid $border-color;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0;
+  }
+
+  .close-button {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $text-secondary;
+    transition: all $transition-fast ease;
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: $text-primary;
+    }
+  }
+}
+
+.dropzone {
+  margin: 1.5rem;
+  border: 2px dashed rgba($primary-color, 0.3);
+  border-radius: 1rem;
+  padding: 2.5rem 1.5rem;
+  transition: all $transition-normal ease;
+  background: rgba($primary-color, 0.02);
+
+  &.dragging {
+    background: rgba($primary-color, 0.08);
+    border-color: $primary-color;
+    transform: scale(0.99);
+  }
+
+  .dropzone-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .pdf-icon {
+    width: 4rem;
+    height: 4rem;
+    color: $primary-color;
+    stroke-width: 1.5;
+  }
+
+  .upload-text {
+    text-align: center;
+
+    .primary-text {
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: $text-primary;
+      margin: 0;
+    }
+
+    .secondary-text {
+      color: $text-secondary;
+      margin: 0.5rem 0;
+    }
+  }
+
+  .browse-button {
+    input {
+      display: none;
+    }
+
+    span {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: $primary-color;
+      color: white;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all $transition-fast ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        background: $primary-hover;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .file-requirements {
+    color: $text-secondary;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+}
+
+.file-preview {
+  margin: 1.5rem;
+  padding: 1rem;
+  background: rgba($primary-color, 0.05);
+  border-radius: 0.75rem;
+
+  .file-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .file-details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .file-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: $error-color;
+  }
+
+  .file-text {
+    .file-name {
+      font-weight: 500;
+      color: $text-primary;
+      margin: 0;
+    }
+
+    .file-size {
+      color: $text-secondary;
+      font-size: 0.875rem;
+      margin: 0.25rem 0 0;
+    }
+  }
+
+  .remove-button {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid white;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $text-secondary;
+    transition: all $transition-fast ease;
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    &:hover {
+      background: rgba($error-color, 0.1);
+      color: $error-color;
+    }
+  }
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid $border-color;
+
+  button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all $transition-fast ease;
+  }
+
+  .cancel-button {
+    background: transparent;
+    color: $text-secondary;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: $text-primary;
+    }
+  }
+
+  .upload-button {
+    background: $primary-color;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    &:hover:not(:disabled) {
+      background: $primary-hover;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.pdf-import-container {
+  width: 100%;
+
+  .selected-file-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+
+    .file-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      .file-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: #6b7280;
+      }
+
+      .file-name {
+        font-weight: 500;
+      }
+
+      .file-size {
+        font-size: 0.875rem;
+      }
+    }
+
+    .remove-file-button {
+      padding: 7px 8px;
+      border: 1px solid white;
+      color: white;
+      background: linear-gradient(135deg, #B22222, #D00000); /* Đỏ rượu vang → đỏ cam */
+
+      cursor: pointer;
+      border-radius: 0.375rem;
+
+
+      svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+  }
+}
+.pdf-preview {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.preview-button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.preview-button:hover {
+  background-color: #e0e0e0;
+}
+.selected-file-display {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #0F172A, #1E293B); /* Xanh than trầm */
+  padding: 14px 18px;
+  border-radius: 14px;
+  box-shadow: 0px 8px 24px rgba(15, 23, 42, 0.6);
+  color: #ffffff;
+  position: relative;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.file-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 12px;
+  fill: none;
+  stroke: #FFD700; /* Vàng ánh kim */
+  stroke-width: 2.8;
+}
+
+.file-name {
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3);
+}
+
+.file-size {
+  font-size: 14px;
+  margin-left: 12px;
+  opacity: 0.8;
+}
+
+.preview-button {
+  background: linear-gradient(135deg, #6A5ACD, #3B82F6); /* Tím xanh dạ quang */
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 14px;
+  box-shadow: 0px 4px 12px rgba(58, 120, 255, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.remove-file-button {
+  background: linear-gradient(135deg, #B22222, #D00000); /* Đỏ rượu vang → đỏ cam */
+  border: 1px solid white;
+  padding: 7px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  margin-left: 9px;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.remove-file-button svg {
+  width: 26px;
+  height: 26px;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.remove-file-button:hover svg {
+  transform: scale(1.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .import-button{
+    width: 57% !important;
+  }
+}

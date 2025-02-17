@@ -1,0 +1,181 @@
+<app-article-preview-modal
+  *ngIf="previewArticle"
+  [article]="previewArticle"
+  (close)="closePreviewModal()"
+  (edit)="handleEditFromPreview($event)">
+</app-article-preview-modal>
+<div class="article-management">
+  <!-- Header Section -->
+  <div class="header-fake">
+    <h1><i class="fa fa-code"></i></h1>
+    <select
+      class="category-dropdown"
+      (change)="filterByCategory($event)">
+      <option value="0">Tất cả</option>
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{category.name}}
+      </option>
+    </select>
+    <div class="filter-section">
+      <button
+        class="filter-btn"
+        [class.active]="currentFilter === 'all'"
+        (click)="filterArticles('all')">
+        Tất cả
+      </button>
+      <button
+        class="filter-btn"
+        [class.active]="currentFilter === 'published'"
+        (click)="filterArticles('published')">
+        Đã xuất bản
+      </button>
+      <button
+        class="filter-btn"
+        [class.active]="currentFilter === 'draft'"
+        (click)="filterArticles('draft')">
+        Bản nháp
+      </button>
+<!--      <select-->
+<!--        class="category-dropdown"-->
+<!--        (change)="filterByCategory($event)">-->
+<!--        <option *ngFor="let category of categories" [value]="category.id">-->
+<!--          {{category.name}}-->
+<!--        </option>-->
+<!--      </select>-->
+      <div class="keyword-search">
+        <input
+          type="text"
+          [(ngModel)]="keyword"
+          (ngModelChange)="onKeywordSearch()"
+          placeholder="Search by keyword"
+          class="keyword-input"
+        />
+        <i class="fas fa-search search-icon"></i>
+      </div>
+    </div>
+    <button class="btn-primary" (click)="createNewArticle()">
+      <i class="fas fa-plus"></i>
+      Thêm bài viết mới
+    </button>
+  </div>
+
+  <div class="articles-container" [@listAnimation]="articles.length">
+    <div class="article-card" *ngFor="let article of articles" [@fadeInOut]>
+      <div class="article-thumbnail">
+        <img [src]="article.thumbnailUrl" [alt]="article.title">
+      </div>
+      <div class="article-content">
+        <div class="article-header">
+          <h2>{{article.title}}</h2>
+          <span class="status-badge" [class]="getStatusColor(article.status)">
+            {{article.status.toUpperCase()}}
+          </span>
+        </div>
+        <div class="article-tags">
+          <span *ngFor="let tag of article.tag" class="tag-badge">
+            {{ tag.name }}
+          </span>
+        </div>
+
+        <p class="article-summary">{{article.summary}}</p>
+        <div class="article-meta">
+          <span>
+            <i class="fas fa-folder"></i>
+            {{article.categoryName}}
+          </span>
+          <span>
+            <i class="fas fa-eye"></i>
+            {{article.viewCount}} lượt xem
+          </span>
+          <span>
+            <i class="fas fa-clock"></i>
+            {{formatDate(article.publishedAt)}}
+          </span>
+        </div>
+        <div class="article-actions">
+          <button class="btn-preview" (click)="openPreviewModal(article)">
+            <i class="fas fa-eye"></i>
+            Xem trước
+          </button>
+          <button class="btn-edit" (click)="editArticle(article)">
+            <i class="fas fa-edit"></i>
+            Sửa
+          </button>
+          <button class="btn-delete" *ngIf="article.status==='draft'" (click)="deleteItem(article)">
+            <i class="fas fa-trash"></i>
+            Xóa
+          </button>
+          <button class="btn-archive" *ngIf="article.status === 'published'" (click)="changeStatus(article)">
+            <i class="fas fa-archive"></i>
+            Lưu trữ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <!-- Pagination -->
+  <div class="pagination">
+    <button
+      [disabled]="currentPage === 0"
+      (click)="onPageChange(currentPage - 1)"
+      class="btn-page">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <!-- First page always visible -->
+    <button
+      *ngIf="totalPages > 0"
+      [class.active]="currentPage === 0"
+      (click)="onPageChange(0)"
+      class="page-number">
+      1
+    </button>
+
+    <!-- Ellipsis if needed -->
+    <span *ngIf="currentPage > 2" class="page-info">...</span>
+
+    <!-- Previous page if not first -->
+    <button
+      *ngIf="currentPage > 1"
+      (click)="onPageChange(currentPage - 1)"
+      class="page-number">
+      {{currentPage}}
+    </button>
+
+    <!-- Current page if not first or last -->
+    <button
+      *ngIf="currentPage > 0 && currentPage < totalPages - 1"
+      class="page-number active">
+      {{currentPage + 1}}
+    </button>
+
+    <!-- Next page if not last -->
+    <button
+      *ngIf="currentPage < totalPages - 2"
+      (click)="onPageChange(currentPage + 1)"
+      class="page-number">
+      {{currentPage + 2}}
+    </button>
+
+    <!-- Ellipsis if needed -->
+    <span *ngIf="currentPage < totalPages - 3" class="page-info">...</span>
+
+    <!-- Last page always visible if more than one page -->
+    <button
+      *ngIf="totalPages > 1"
+      [class.active]="currentPage === totalPages - 1"
+      (click)="onPageChange(totalPages - 1)"
+      class="page-number">
+      {{totalPages}}
+    </button>
+
+    <button
+      [disabled]="currentPage === totalPages - 1"
+      (click)="onPageChange(currentPage + 1)"
+      class="btn-page">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</div>

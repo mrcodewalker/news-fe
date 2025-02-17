@@ -1,0 +1,40 @@
+<button type="button" class="view-files-btn" (click)="openModal()">
+  <i class="fas fa-file-pdf"></i>
+  Select File
+</button>
+
+<div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>PDF Storage</h2>
+      <button type="button" class="close-btn" (click)="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="file-list">
+      <div *ngFor="let file of pdfFiles"
+           class="file-item"
+           [class.selected]="file === selectedFile"
+           (click)="selectFile(file)">
+        <i class="fas fa-file-pdf file-icon"></i>
+        <div class="file-info">
+          <span class="file-name">{{file.originalName}}</span>
+          <span class="file-size">{{formatFileSize(file.fileSize)}}</span>
+          <span class="file-date">{{formatDate(file.createdAt)}}</span>
+        </div>
+        <button type="button" class="preview-btn" (click)="previewFile(file); $event.stopPropagation()">
+          <i class="fas fa-eye"></i>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="previewFileName" class="preview-overlay">
+      <i class="fas fa-search"></i> Previewing: {{previewFileName}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="done-btn" (click)="onDoneClick()" [disabled]="!selectedFile">
+        <i class="fas fa-check"></i> Done
+      </button>
+    </div>
+  </div>
+</div>
+
